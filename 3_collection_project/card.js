@@ -21,7 +21,7 @@ const collection = [
     {
         name: 'Chicken Parmesan',
         creator: 'Gordon Ramsay',
-        releaseYear: 2019,
+        time: "60 m",
         picture: 'images/parmesana.jpg',
         genre: ['Dinner'],
         quantity: 4,
@@ -167,18 +167,67 @@ const showRecipe = (recipe) => {
 
   // fill the popup
   const recipeContent = `
-    <h1>${recipe.name}</h1>
-    <p>Creator: ${recipe.creator}</p>
-    <p>Time: ${recipe.time}</p>
+    <style>
+    body {
+      margin : 0 ;
+      padding :0 ;
+    }
+      .popup {
+        background-color : #d7d8d1;
+        padding :50px ;
+  
+      }
+      header{
+        display : flex ;
+      }
+      h1{
+        color : red;
+      
+      }
+      h3 {
+        color : red ;
+       
+
+      }
+      .headpopup{
+        display : flex;
+        justify-content: space-around;
+        
+      }
+      .headpopup p {
+        text-align: center;
+          background-color: pink;
+        border-radius: 10px;
+        color: black;
+        padding: 5px;
+        font-size: 15px;
+        margin: 0px;
+        text-align: center;
+
+      }
+    </style>
+   
+    <div class="popup">
+    <header>
+      <div class="popupTitle">
+      <h1>${recipe.name}</h1>
+      <h3>${recipe.creator}</h3>
+      </div>
+    <img src=${recipe.picture} alt="Recipe image">
+    </header>
+    <div class="headpopup">
+      <p>${recipe.quantity}<br>persons</p>
+      <p>${recipe.time}<br>Time</p>
+    </div>
     <h2>Ingredients:</h2>
     <ul>
-      ${recipe.ingredients.map((ingredient) => `<li>${ingredient[0]}: ${ingredient[1]} ${ingredient[2]}</li>`).join("")}
+      ${recipe.ingredients.map((ingredient) => `<li>${ingredient[0]} : ${ingredient[1]} ${ingredient[2]}</li>`).join("")}
     </ul>
     <h2>Instructions:</h2>
     <ol>
       ${recipe.instructions.map((instruction) => `<li>${instruction}</li>`).join("")}
     </ol>
-    
+    </div>
   `;
 
   // affect popup to body
