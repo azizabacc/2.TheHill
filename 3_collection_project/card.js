@@ -341,7 +341,13 @@ container[0].appendChild(card);
 recipeBtn.addEventListener("click", function() {
   showRecipe(collection[j]);
 });
+recipeBtn.addEventListener("mouseover", function() {
+  recipeBtn.style.cursor = "pointer";
+});
 
+recipeBtn.addEventListener("mouseout", function() {
+  recipeBtn.style.cursor = "default";
+});
   }
 }
 function myFunction(x) {
