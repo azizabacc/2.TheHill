@@ -287,6 +287,7 @@ let recipeBio = document.createElement("p");
 recipeBio.className = "recipe-bio";
 
 textCostom(recipeBtn,"VIEW RECIPE","20px","center","white","#64970a","10px","10","10px");
+
 displayFlex(headDesc,"column","center","center","inherit");
 textCostom(recipeTime,collection[j].time+"<br>Time","15px","center","black","pink","5px","0","10px");
 textCostom(ingredientNb,collection[j].ingredients.length+"<br>Ingredients","15px","center","black","pink","5px","0","10px");
@@ -340,6 +341,13 @@ container[0].appendChild(card);
 
 recipeBtn.addEventListener("click", function() {
   showRecipe(collection[j]);
+});
+recipeBtn.addEventListener("mouseover", function() {
+  recipeBtn.style.cursor = "pointer";
+});
+
+recipeBtn.addEventListener("mouseout", function() {
+  recipeBtn.style.cursor = "default";
 });
 
   }
