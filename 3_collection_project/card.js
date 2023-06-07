@@ -138,7 +138,7 @@ const collection = [
         name: 'Mojito',
         creator: 'Unknown',
         time: "7 m",
-        picture: 'images/mojito.jpg',
+        picture: 'images/mojito.jpeg',
         genre: ['Beverage', 'Cocktail'],
         quantity: 1,
         ingredients: [
