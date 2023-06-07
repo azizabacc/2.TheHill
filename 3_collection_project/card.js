@@ -2,7 +2,7 @@ const collection = [
     {
       name: 'Waffles',
       creator: 'Cyril lignac',
-      releaseYear: 2022,
+      time: "45 m",
       picture: 'images/waffles.jpeg',
       genre: ['Dessert', 'Breakfast'],
       quantity : 6,
@@ -15,13 +15,14 @@ const collection = [
         "Heat the waffle iron and pour a ladle of batter into each mold.",
         "Cook the waffles until they are golden and crispy.",
         "Serve hot with maple syrup, powdered sugar, or fruits."
-      ]
+      ],
+      bio :"Delicious homemade waffles with a light batter, served with your favorite toppings."
     },
     {
         name: 'Chicken Parmesan',
         creator: 'Gordon Ramsay',
         releaseYear: 2019,
-        picture: 'images/chicken_parmesan.jpg',
+        picture: 'images/parmesana.jpg',
         genre: ['Dinner'],
         quantity: 4,
         ingredients: [
@@ -43,13 +44,14 @@ const collection = [
           'Transfer the chicken breasts to a baking dish and top each piece with marinara sauce, mozzarella cheese, and fresh basil leaves.',
           'Bake in the preheated oven for 20-25 minutes or until the chicken is cooked through and the cheese is melted and bubbly.',
           'Serve hot with pasta or a side salad.'
-        ]
+        ],
+        bio : "A classic Italian dish featuring breaded chicken cutlets topped with marinara sauce and melted mozzarella cheese."
       },
       {
         name: 'Caprese Salad',
         creator: 'Jamie Oliver',
-        releaseYear: 2015,
-        picture: 'images/caprese_salad.jpg',
+        time: "15 m",
+        picture: 'images/caprese.jpg',
         genre: ['Appetizer', 'Salad'],
         quantity: 2,
         ingredients: [
@@ -69,13 +71,14 @@ const collection = [
           'Season with salt and black pepper to taste.',
           'Let the salad sit for a few minutes to allow the flavors to meld together.',
           'Serve as an appetizer or a refreshing side dish.'
-        ]
+        ],
+        bio : "A refreshing salad made with ripe tomatoes, fresh mozzarella cheese, basil leaves, extra virgin olive oil, balsamic vinegar, salt, and pepper."
       },
       {
         name: 'Spaghetti Carbonara',
         creator: 'Giada De Laurentiis',
-        releaseYear: 2010,
-        picture: 'images/spaghetti_carbonara.jpg',
+        time: "20 m",
+        picture: 'images/carbonara.jpg',
         genre: ['Dinner'],
         quantity: 4,
         ingredients: [
@@ -97,13 +100,14 @@ const collection = [
           'Remove the skillet from heat and quickly pour in the egg mixture, stirring constantly to coat the spaghetti.',
           'Crumble the cooked pancetta or bacon and sprinkle it over the spaghetti.',
           'Garnish with fresh parsley leaves and serve hot.'
-        ]
+        ],
+        bio : "Spaghetti carbonara prepared with crispy pancetta or bacon, mced garlic, eggs, Parmesan cheese, black pepper, and garnished with fresh parsley leaves."
       },
       {
         name: 'Quinoa Salad',
         creator: 'Yotam Ottolenghi',
-        releaseYear: 2016,
-        picture: 'images/quinoa_salad.jpg',
+        time: "45 m",
+        picture: 'images/Quinoa_Salad.jpg',
         genre: ['Salad', 'Healthy'],
         quantity: 4,
         ingredients: [
@@ -127,12 +131,13 @@ const collection = [
           'Taste and adjust the seasoning if needed.',
           'Chill the salad in the refrigerator for at least 30 minutes before serving.',
           'Serve cold as a refreshing and nutritious salad.'
-        ]
+        ],
+        bio : "A nutritious salad made with quinoa, diced cucumber, halved cherry tomatoes, diced red bell pepper, finely chopped red onion, fresh parsley leaves, fresh mint leaves, lemon juice, extra virgin olive oil, salt, and pepper."
       },
       {
         name: 'Mojito',
         creator: 'Unknown',
-        releaseYear: 'N/A',
+        time: "7 m",
         picture: 'images/mojito.jpg',
         genre: ['Beverage', 'Cocktail'],
         quantity: 1,
@@ -152,47 +157,127 @@ const collection = [
           'Stir gently to combine all the ingredients.',
           'Garnish with a sprig of fresh mint leaves and a lime wedge.',
           'Serve immediately and enjoy this refreshing cocktail.'
-        ]
+        ],
+        bio : " A refreshing cocktail made with fresh mint leaves, lime wedges, granulated sugar, white rum, club soda, and ice cubes."
       }
 ];
-let container= document.getElementsByClassName("container");
-let category = document.createElement("div");
-console.log(collection[0].genre.length);
-for(let i=0;i<collection[0].genre.length;i++){
-    let g = document.createElement("p");
-    console.log(collection[0].genre[i]);
-    g.textContent= collection[0].genre[i];
-    g.style.backgroundColor = "white";
-    category.appendChild(g);
+const displayFlex=(node,flexDirection,alignItems,justifyContent,width)=>{
+  node.style.display="flex";
+  node.style.flexDirection =flexDirection;
+  node.style.alignItems =alignItems;
+  node.style.justifyContent =justifyContent;
+  node.style.width =width;
 }
-category.style.display ="flex";
-category.style.justifyContent ="space-evenly";
+const textCostom = (node, content, size,textAlign, color, backgroundColor,padding,margin, borderRadius)=> {
+  node.innerHTML=content;
+  node.style.backgroundColor =backgroundColor;
+  node.style.borderRadius =borderRadius;
+  node.style.color =color;
+  node.style.padding =padding;
+  node.style.fontSize =size;
+  node.style.margin =margin;
+  node.style.textAlign =textAlign;
+}
+document.body.style.margin ="0";
+document.body.style.padding ="0";
+let container= document.getElementsByClassName("container");
+container[0].style.backgroundColor = "#bbad7a";
+
+const generateCard = () =>{
+  for(let j=0; j<collection.length ;j++){
+
+let headDesc = document.createElement("div");
+headDesc.className = "head-desc";
+let recipeBtn = document.createElement("p");
+recipeBtn.className = "recipe-btn";
+let category1 = document.createElement("div");
+category1.className = "category";
+let category2 = document.createElement("div");
+category2.className = "category";
+let recipeTime = document.createElement("p");
+recipeTime.className = "resume";
+let ingredientNb = document.createElement("p");
+ingredientNb.className = "resume";
+let serving = document.createElement("p");
+serving.className = "resume";
 let title = document.createElement("div");
-let recipeName =document.createElement("p");
-let recipeCreator =document.createElement("p");
-recipeName.textContent = collection[0].name;
-recipeCreator.textContent = collection[0].creator;
+title.className = "title";
+let recipeName = document.createElement("p");
+recipeName.className = "recipe-name";
+let recipeCreator = document.createElement("p");
+recipeCreator.className = "recipe-creator";
+let img = document.createElement("img");
+img.className = "recipe-image";
+let card = document.createElement("div");
+card.className = "card";
+let recipeBio = document.createElement("p");
+recipeBio.className = "recipe-bio";
+
+textCostom(recipeBtn,"VIEW RECIPE","20px","center","white","#64970a","10px","10","10px");
+displayFlex(headDesc,"column","center","center","inherit");
+textCostom(recipeTime,collection[j].time+"<br>Time","15px","center","black","pink","5px","0","10px");
+textCostom(ingredientNb,collection[j].ingredients.length+"<br>Ingredients","15px","center","black","pink","5px","0","10px");
+textCostom(serving,collection[j].quantity+"<br>Serving","15px","center","black","pink","5px","0","10px");
+for(let i=0;i<collection[j].genre.length;i++){
+    let g = document.createElement("p");
+    textCostom(g, collection[j].genre[i],"15px","center","black","#fbd7dd","5px","0","10px");
+    category1.appendChild(g);
+}
+textCostom(recipeName,collection[j].name,"40px","center","red","white","0px","0",'0px' );
+textCostom(recipeCreator,collection[j].creator,"30px","center","red","white","0px","0",'0px' );
+textCostom(recipeBio,collection[j].bio,"20px","left","black","white"," 20px 10px ","0","0px");
+
+recipeName.style.width ="inherit";
+recipeCreator.style.width="inherit";
+category1.style.padding= "10px";
+
+category2.style.padding= "10px";
+img.src = collection[j].picture;
+img.style.width = "inherit";
+img.style.height ="auto";
+
+card.style.backgroundColor = "#d7d8d1";
+card.style.borderRadius ="10px";
+card.style.padding="30px";
+card.style.margin= "20px";
+card.style.height ="670px";
+
+
+
+
+displayFlex(category2,"row","center","space-evenly","inherit");
+displayFlex(category1,"row","center","space-evenly","inherit");
+displayFlex(title,"column","flex-start","space-between","inherit")
+displayFlex(card,"column","center","center","290px");
+
+
+category2.appendChild(ingredientNb);
+category2.appendChild(recipeTime);
+category2.appendChild(serving);
 title.appendChild(recipeName);
 title.appendChild(recipeCreator);
-title.style.display = "flex";
-title.style.flexDirection ="column"
-
-let img = document.createElement("img");
-img.src = collection[0].picture;
-img.style.width = "180px";
-img.style.height ="auto";
-let desc = document.createElement("div");
-let card = document.createElement("div");
-card.style.backgroundColor = "blue";
-//card.style.alignItems ="center";
-card.style.width="fit-content";
-desc.appendChild(title);
 card.appendChild(img);
-card.append(category);
-card.append(desc);
-card.style.display = "flex";
-card.style.flexDirection ="column";
-card.style.borderRadius ="10px";
+headDesc.appendChild(category1);
+headDesc.appendChild(category2);
+card.appendChild(headDesc);
+card.appendChild(title);
+card.appendChild(recipeBio);
+card.appendChild(recipeBtn);
 container[0].appendChild(card);
 
+  }
+}
+function myFunction(x) {
+  if (x.matches) { // If media query matches
+    displayFlex(container[0],"column", "center", "center", "auto");
+  } else {
+    displayFlex(container[0],"row", "center", "center", "auto");
+    container[0].style.flexFlow = "row wrap";
 
+  }
+}
+
+var x = window.matchMedia("(max-width: 420px)")
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction) // Attach listener function on state changes
+generateCard();
