@@ -161,6 +161,30 @@ const collection = [
         bio : " A refreshing cocktail made with fresh mint leaves, lime wedges, granulated sugar, white rum, club soda, and ice cubes."
       }
 ];
+const showRecipe = (recipe) => {
+  // Create popup
+  const popup = window.open("", "Recipe", "width=600,height=400");
+
+  // fill the popup
+  const recipeContent = `
+    <h1>${recipe.name}</h1>
+    <p>Creator: ${recipe.creator}</p>
+    <p>Time: ${recipe.time}</p>
+    <h2>Ingredients:</h2>
+    <ul>
+      ${recipe.ingredients.map((ingredient) => `<li>${ingredient[0]}: ${ingredient[1]} ${ingredient[2]}</li>`).join("")}
+    </ul>
+    <h2>Instructions:</h2>
+    <ol>
+      ${recipe.instructions.map((instruction) => `<li>${instruction}</li>`).join("")}
+    </ol>
+    
+  `;
+
+  // affect popup to body
+  popup.document.body.innerHTML = recipeContent;
+};
+
 const displayFlex=(node,flexDirection,alignItems,justifyContent,width)=>{
   node.style.display="flex";
   node.style.flexDirection =flexDirection;
@@ -264,6 +288,10 @@ card.appendChild(title);
 card.appendChild(recipeBio);
 card.appendChild(recipeBtn);
 container[0].appendChild(card);
+
+recipeBtn.addEventListener("click", function() {
+  showRecipe(collection[j]);
+});
 
   }
 }
