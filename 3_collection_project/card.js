@@ -1,3 +1,4 @@
+
 const collection = [
     {
       name: 'Waffles',
@@ -161,6 +162,16 @@ const collection = [
         bio : " A refreshing cocktail made with fresh mint leaves, lime wedges, granulated sugar, white rum, club soda, and ice cubes."
       }
 ];
+const jsonData = JSON.stringify(collection, null, 2);
+const blob = new Blob([jsonData], { type: 'application/json' });
+const url = URL.createObjectURL(blob);
+
+const link = document.createElement('a');
+link.href = url;
+link.download = 'collection.json';
+link.click();
+
+
 const showRecipe = (recipe) => {
   // Create popup
   const popup = window.open("", "Recipe", "width=600,height=400");
@@ -173,7 +184,7 @@ const showRecipe = (recipe) => {
       padding :0 ;
     }
       .popup {
-        background-color : #d7d8d1;
+        background-color : white;
         padding :50px ;
   
       }
@@ -254,9 +265,11 @@ const textCostom = (node, content, size,textAlign, color, backgroundColor,paddin
 document.body.style.margin ="0";
 document.body.style.padding ="0";
 let container= document.getElementsByClassName("container");
-container[0].style.backgroundColor = "#bbad7a";
-
+//container[0].style.backgroundColor = "#F6F0ED";
+container[0].style.background = " rgb(187,177,147)"
+container[0].style.background = " radial-gradient(circle, rgba(187,177,147,1) 0%, rgba(246,240,237,1) 35%, rgba(126,168,190,1) 100%)"
 const generateCard = () =>{
+  
   for(let j=0; j<collection.length ;j++){
 
 let headDesc = document.createElement("div");
@@ -288,40 +301,46 @@ recipeBio.className = "recipe-bio";
 
 textCostom(recipeBtn,"VIEW RECIPE","20px","center","white","#64970a","10px","10","10px");
 displayFlex(headDesc,"column","center","center","inherit");
-textCostom(recipeTime,collection[j].time+"<br>Time","15px","center","black","pink","5px","0","10px");
-textCostom(ingredientNb,collection[j].ingredients.length+"<br>Ingredients","15px","center","black","pink","5px","0","10px");
-textCostom(serving,collection[j].quantity+"<br>Serving","15px","center","black","pink","5px","0","10px");
+textCostom(recipeTime,collection[j].time+"<br>Time","15px","center","rgb(246, 240, 237)","#7EA8BE","5px","5px","10px");
+textCostom(ingredientNb,collection[j].ingredients.length+"<br>Ingredients","15px","center","rgb(246, 240, 237)","#7EA8BE","5px","5px","10px");
+textCostom(serving,collection[j].quantity+"<br>Serving","15px","center","rgb(246, 240, 237)","#7EA8BE","5px","5px","10px");
 for(let i=0;i<collection[j].genre.length;i++){
     let g = document.createElement("p");
-    textCostom(g, collection[j].genre[i],"15px","center","black","#fbd7dd","5px","0","10px");
+    textCostom(g, collection[j].genre[i],"15px","center","rgb(246, 240, 237)","#C2948A","5px","5px","10px");
     category1.appendChild(g);
 }
-textCostom(recipeName,collection[j].name,"40px","center","red","white","0px","0",'0px' );
-textCostom(recipeCreator,collection[j].creator,"30px","center","red","white","0px","0",'0px' );
-textCostom(recipeBio,collection[j].bio,"20px","left","black","white"," 20px 10px ","0","0px");
+textCostom(recipeName,collection[j].name,"40px","center","#28536B","white","0px","0",'0px' );
+textCostom(recipeCreator,collection[j].creator,"30px","center","#28536B","white","0px","0",'0px' );
+textCostom(recipeBio,collection[j].bio,"20px","left","black","white"," 20px 10px ","0","10px");
 
 recipeName.style.width ="inherit";
 recipeCreator.style.width="inherit";
 category1.style.padding= "10px";
 
+title.style.backgroundColor ='white';
+title.style.padding ="10px";
+title.style.borderRadius ="10px";
+title.style.marginBottom ="10px";
 category2.style.padding= "10px";
 img.src = collection[j].picture;
 img.style.width = "inherit";
 img.style.height ="auto";
 
-card.style.backgroundColor = "#d7d8d1";
+//card.style.backgroundColor = "#BBB193";
+card.style.background = "background: rgb(126,168,190)";
+card.style.background = "radial-gradient(circle, rgba(126,168,190,1) 0%, rgba(246,240,237,1) 0%, rgba(40,83,107,1) 100%)";
+card.style.border = "5px solid #F6F0ED";
 card.style.borderRadius ="10px";
 card.style.padding="30px";
 card.style.margin= "20px";
-card.style.height ="670px";
-
+card.style.height ="714px";
 
 
 
 displayFlex(category2,"row","center","space-evenly","inherit");
 displayFlex(category1,"row","center","space-evenly","inherit");
 displayFlex(title,"column","flex-start","space-between","inherit")
-displayFlex(card,"column","center","center","290px");
+displayFlex(card,"column","center","space-between","290px");
 
 
 category2.appendChild(ingredientNb);
@@ -332,10 +351,14 @@ title.appendChild(recipeCreator);
 card.appendChild(img);
 headDesc.appendChild(category1);
 headDesc.appendChild(category2);
-card.appendChild(headDesc);
-card.appendChild(title);
-card.appendChild(recipeBio);
-card.appendChild(recipeBtn);
+let descriptionContainer = document.createElement('div');
+descriptionContainer.style.display='flex';
+descriptionContainer.style.flexDirection="column";
+descriptionContainer.appendChild(headDesc);
+descriptionContainer.appendChild(title);
+descriptionContainer.appendChild(recipeBio);
+descriptionContainer.appendChild(recipeBtn);
+card.appendChild(descriptionContainer);
 container[0].appendChild(card);
 
 recipeBtn.addEventListener("click", function() {
